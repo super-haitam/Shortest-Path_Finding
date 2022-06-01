@@ -34,7 +34,7 @@ for size, num in size_num:
 	if maze_dict.get(size) is not None:
 		maze_dict[size].append(maze)
 	else:
-		maze_dict[size] = []
+		maze_dict[size] = [maze]
 
 
 	with open("maze_dict_container.py", 'w') as f:
