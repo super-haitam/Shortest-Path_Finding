@@ -33,7 +33,6 @@ if maze_source == "user":
                 end = nodes_lst[j][i]
 elif maze_source == "maze images":
     maze_lst = utils.get_maze_lst()
-    # maze_lst = maze_dict["big++"][0]
     nodes_lst = [[Node(i, j, maze_lst) for i in range(len(maze_lst[0]))] for j in range(len(maze_lst))]
     for j in range(len(maze_lst)):
         for i in range(len(maze_lst[0])):
@@ -44,9 +43,21 @@ elif maze_source == "maze images":
     start = nodes_lst[1][0]
     end = nodes_lst[-2][-1]
 
+try:
+    _ = start
+except NameError:
+    print("ERROR: You didn't specify a starting point!\n")
+    quit()
+
 start.g_cost = 0
 start.h_cost = math.sqrt((start.x - end.x)**2 + (start.y - end.y)**2)
 start.f_cost = start.h_cost + start.g_cost
+
+try:
+    _ = end
+except NameError:
+    print("ERROR: You didn't specify an ending point!\n")
+    quit()
 
 end.g_cost = start.h_cost
 end.h_cost = 0
@@ -142,7 +153,12 @@ class Game:
             self.set_neighbour_parents()
 
             # Neighbour with least f-cost will be added to self.checked and removed from self.neighbours so that it's no longer an option
-            self.least_f_cost_node = self.neighbours[0]
+            try:
+                self.least_f_cost_node = self.neighbours[0]
+            except IndexError:
+                print("ERROR: You probably closed the way for the algorithm and didn't allow it to reach the ending point.\n")
+                quit()
+            
             for neighbour in self.neighbours:
                 if neighbour.f_cost < self.least_f_cost_node.f_cost and neighbour not in self.checked:
                     self.least_f_cost_node = neighbour
@@ -169,7 +185,15 @@ class Game:
         print("END")
         print("It took", time.time()-t0, "seconds to complete.")
         parents = [end]
-        while True:
+        running = True
+        while running:
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    running = False
+                    pygame.quit()
+
+
             parents.append(parents[-1].parent)
 
             # Will draw each time we add a parent to parents to make great effect
@@ -186,7 +210,7 @@ class Game:
 
             if parents[-1] == start:
                 break
-            
+
         pygame.time.wait(1200)
 
 game = Game()

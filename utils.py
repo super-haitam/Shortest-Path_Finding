@@ -89,7 +89,9 @@ def get_dimensions(screen):
         global run
         run = False
 
-    Label(window, text="Enter a number which is the lenght of the sides of the square maze").pack()
+    Label(window, text="Enter a number which is the lenght of the sides of the square maze.").pack()
+    Label(window, text="But remember, the bigger the size is the slower the pathfinding will be.").pack()
+    Label(window, text="Enter a natural positive number that should be smaller than 100.").pack()
 
     ent = Entry(window)
     ent.pack()
@@ -197,6 +199,8 @@ def get_user_maze(screen, size):
                             node.color = selected_color
             
             if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+
                 # Change the selected color based on the Color clicked on
                 for i in range(len(pallette_rects)):
                     if pallette_rects[i].collidepoint(mouse_x, mouse_y):

@@ -10,5 +10,5 @@ It allows the user to:
 
 ### CONCLUSION
 Well, I made that to challenge myself to do some tougher projects, other that game projects, cuz I don't want to become a game developer but a software engineer.
-Wanted to thank "Sebastian League" for his video about A* PathFinding Algorithm: https://www.youtube.com/watch?v=-L-WgKMFuhE
+Wanted to thank "Sebastian League" for his video about A* PathFinding Algorithm: https://www.youtube.com/watch?v=-L-WgKMFuhE.
 Enjoy!
