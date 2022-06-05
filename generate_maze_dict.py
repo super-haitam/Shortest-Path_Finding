@@ -1,7 +1,7 @@
 from PIL import Image
 
 maze_dict = {}
-sizes_str = ["big", "medium", "small", "big+", "big++"]
+sizes_str = ["small", "medium", "big", "big+", "big++"]
 size_num = [(n, nb) for n in sizes_str for nb in range(1, 5)]
 
 for size, num in size_num:
