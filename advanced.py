@@ -103,7 +103,7 @@ class Game:
             minutes += 1
             seconds -= 60
 
-        timer_txt = self.timer_font.render(f"{minutes if 10<minutes else '0'+str(minutes)}:{int(seconds) if 10<seconds else '0'+str(int(seconds))}", True, BLACK)
+        timer_txt = self.timer_font.render(f"{minutes if 10<=minutes else '0'+str(minutes)}:{int(seconds) if 10<=seconds else '0'+str(int(seconds))}", True, BLACK)
         screen.blit(timer_txt, ((HEIGHT+WIDTH-timer_txt.get_width())/2, HEIGHT/10))
 
         pygame.display.flip()
@@ -212,6 +212,7 @@ class Game:
                 break
 
         pygame.time.wait(1200)
+        utils.end()
 
 game = Game()
 game.run()

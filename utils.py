@@ -2,6 +2,7 @@ from settings import *
 import pygame
 from tkinter import *
 import random
+import webbrowser
 
 
 def get_maze_source(screen):
@@ -254,3 +255,31 @@ def get_maze_lst():
     window.destroy()
     
     return maze_dict[sizes_str[size_index]][random.randrange(4)]
+
+
+def end():
+    global run
+    window = Tk()
+
+    def command():
+        global run
+        run = False
+
+    def open_github():
+        command()
+        webbrowser.open("https://github.com/super-haitam")
+
+    Label(window, text="Thank you for running my project; Hope you enjoyed!").pack()
+    Label(window, text="There are many others in my Github account: https://github.com/super-haitam").pack()
+    Button(window, text="Open Github", command=open_github).pack()
+    Button(window, text="See you soon!", command=command).pack()
+
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+
+        window.update()
+    window.destroy()
